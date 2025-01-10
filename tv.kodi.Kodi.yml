@@ -67,7 +67,7 @@ modules:
     config-opts:
       - --enable-rkmpp 
       - --enable-version3 
-      - --enable-lib-drm 
+      - --enable-libdrm 
       - --enable-nonfree 
       - --enable-gpl 
       - --enable-libx264 
