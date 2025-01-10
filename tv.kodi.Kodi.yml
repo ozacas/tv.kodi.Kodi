@@ -65,6 +65,25 @@ modules:
         sha512: b2dcdeeb3d6c37788b4c697b497b9282738b758927ffbdbe72b05b1b26a61aa967dfba0ce05828b5bd5bcac93eb3394b0eafbb57e325d037867cf720d64ba099
   - name: ffmpeg
     config-opts:
+      - --enable-rkmpp 
+      - --enable-version3 
+      - --enable-lib-drm 
+      - --enable-nonfree 
+      - --enable-gpl 
+      - --enable-libx264 
+      - --enable-librtmp 
+      - --enable-shared 
+      - --enable-static 
+      - --enable-libx265 
+      - --enable-libmp3lame 
+      - --enable-libpulse 
+      - --enable-openssl 
+      - --enable-libopus 
+      - --enable-libvorbis 
+      - --enable-libaom 
+      - --enable-libass 
+      - --enable-libx265 
+      - --enable-libvpx
       - --enable-libdav1d
       - --enable-gpl
       - --enable-gnutls
