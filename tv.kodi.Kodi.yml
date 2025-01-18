@@ -63,31 +63,6 @@ modules:
       - type: archive
         url: https://code.videolan.org/videolan/dav1d/-/archive/1.4.1/dav1d-1.4.1.tar.bz2
         sha512: b2dcdeeb3d6c37788b4c697b497b9282738b758927ffbdbe72b05b1b26a61aa967dfba0ce05828b5bd5bcac93eb3394b0eafbb57e325d037867cf720d64ba099
-  - name: ffmpeg-rockchip
-    config-opts:
-      - --enable-nonfree 
-      - --enable-gpl 
-      - --enable-shared 
-      - --enable-static 
-      - --enable-libmp3lame 
-      - --enable-libpulse 
-      - --enable-libopus 
-      - --enable-libvorbis 
-      - --enable-libaom 
-      - --enable-libvpx
-      - --enable-libdav1d
-      - --enable-gnutls
-      - --enable-vaapi
-      - --enable-vdpau
-    cleanup:
-      - /include
-      - /lib
-      - /bin
-      - /share/doc
-    sources:
-      - type: git
-        url: https://github.com/nyanmisaka/ffmpeg-rockchip.git
-        commit: master
   - name: flatbuffers
     buildsystem: cmake-ninja
     config-opts:
@@ -186,6 +161,12 @@ modules:
       - type: archive
         url: https://github.com/nlohmann/json/archive/refs/tags/v3.11.3.tar.gz
         sha256: 0d8ef5af7f9794e3263480193c491549b2ba6cc74bb018906202ada498a79406
+  - name: pugixml
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/zeux/pugixml/releases/download/v1.15/pugixml-1.15.tar.gz
+        sha256: 655ade57fa703fb421c2eb9a0113b5064bddb145d415dd1f88c79353d90d511a
   - name: jsoncpp
     buildsystem: cmake-ninja
     config-opts:
@@ -402,6 +383,28 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/54/ed/79a089b6be93607fa5cdaedf301d7dfb23af5f25c398d5ead2525b063e17/pyyaml-6.0.2.tar.gz
         sha256: d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e
+  - name: ffmpeg-rockchip
+    config-opts:
+      - --enable-nonfree 
+      - --enable-gpl 
+      - --enable-shared 
+      - --enable-static 
+      - --enable-libmp3lame 
+      - --enable-libpulse 
+      - --enable-libopus 
+      - --enable-libdav1d
+      - --enable-gnutls
+      - --enable-vaapi
+      - --enable-vdpau
+    cleanup:
+      - /include
+      - /lib
+      - /bin
+      - /share/doc
+    sources:
+      - type: git
+        url: https://github.com/nyanmisaka/ffmpeg-rockchip.git
+        commit: 7.1
   - name: lirc
     no-autogen: true
     config-opts:
