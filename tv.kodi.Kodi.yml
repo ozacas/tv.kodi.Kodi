@@ -63,11 +63,9 @@ modules:
       - type: archive
         url: https://code.videolan.org/videolan/dav1d/-/archive/1.4.1/dav1d-1.4.1.tar.bz2
         sha512: b2dcdeeb3d6c37788b4c697b497b9282738b758927ffbdbe72b05b1b26a61aa967dfba0ce05828b5bd5bcac93eb3394b0eafbb57e325d037867cf720d64ba099
-  - name: ffmpeg
+  - name: ffmpeg-rockchip
     config-opts:
-      - --enable-rkmpp 
       - --enable-version3 
-      - --enable-lib-drm 
       - --enable-nonfree 
       - --enable-gpl 
       - --enable-libx264 
@@ -77,7 +75,6 @@ modules:
       - --enable-libx265 
       - --enable-libmp3lame 
       - --enable-libpulse 
-      - --enable-openssl 
       - --enable-libopus 
       - --enable-libvorbis 
       - --enable-libaom 
@@ -95,13 +92,9 @@ modules:
       - /bin
       - /share/doc
     sources:
-      - type: archive
-        url: https://ffmpeg.org/releases/ffmpeg-6.0.1.tar.xz
-        sha256: 9b16b8731d78e596b4be0d720428ca42df642bb2d78342881ff7f5bc29fc9623
-        x-checker-data:
-          type: html
-          url: https://ffmpeg.org/releases/
-          pattern: '>(ffmpeg-([\d.]+)\.tar\.xz)<'
+      - type: git
+        url: https://github.com/nyanmisaka/ffmpeg-rockchip.git
+        commit: master
   - name: flatbuffers
     buildsystem: cmake-ninja
     config-opts:
@@ -250,9 +243,13 @@ modules:
       - '*.la'
       - /lib/*.so
     sources:
+      # suffers from too many requests using a mirror instead
+      #- type: archive
+      #  url: http://git.savannah.gnu.org/cgit/libcdio.git/snapshot/libcdio-release-2.1.0.tar.gz
+      #  sha256: 3ab7973d88405a7d4aad05e547c3316ba196caa19826072174c3bc3c58145c61
       - type: archive
-        url: http://git.savannah.gnu.org/cgit/libcdio.git/snapshot/libcdio-release-2.1.0.tar.gz
-        sha256: 3ab7973d88405a7d4aad05e547c3316ba196caa19826072174c3bc3c58145c61
+        url: https://mirrors.dotsrc.org/gnu/libcdio/libcdio-2.1.0.tar.bz2
+        sha256: 8550e9589dbd594bfac93b81ecf129b1dc9d0d51e90f9696f1b2f9b2af32712b
   - name: libcec
     buildsystem: cmake-ninja
     cleanup:
