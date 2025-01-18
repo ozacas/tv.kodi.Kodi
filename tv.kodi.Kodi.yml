@@ -398,7 +398,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/nyanmisaka/ffmpeg-rockchip.git
-        commit: 7.1
+        commit: "7.1"
   - name: lirc
     no-autogen: true
     config-opts:
@@ -533,6 +533,9 @@ modules:
       - -DSPDLOG_BUILD_BENCH=OFF
       - -DSPDLOG_INSTALL=ON
       - -DSPDLOG_FMT_EXTERNAL=ON
+    build-commands: # TODO HACK FIXME... should not be needed
+      - mkdir -p /app/include/spdlog/fmt
+      - cp -a include/spdlog/fmt/bundled /app/include/spdlog/fmt/
     cleanup:
       - /include
       - '*.a'
@@ -622,7 +625,17 @@ modules:
       - type: archive
         url: https://github.com/leethomason/tinyxml2/archive/refs/tags/9.0.0.tar.gz
         sha512: 9c5ce8131984690df302ca3e32314573b137180ed522c92fd631692979c942372a28f697fdb3d5e56bcf2d3dc596262b724d088153f3e1d721c9536f2a883367
-  - name: waylandpp
+  - name: pugixml
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_SHARED_LIBS=ON
+    build-commands:
+      - install -m 644 pugixml.pc /app/share/pkgconfig
+    sources:
+      - type: archive
+        url: https://github.com/zeux/pugixml/releases/download/v1.15/pugixml-1.15.tar.gz
+        sha256: 655ade57fa703fb421c2eb9a0113b5064bddb145d415dd1f88c79353d90d511a
+  - name: wayland
     buildsystem: cmake-ninja
     sources:
       - type: archive
@@ -630,15 +643,17 @@ modules:
         sha512: 64b59d073a0593ecf442362eb63ec0a9dfeaa1ad1d56b5955cb0c159fd01dc45e012b926811c6ca0dc12d4bb2e640eabc2e778ab7d28de2098eb694d26f01039
       - type: patch
         path: patches/waylandpp-gcc13.patch
+    build-commands:  # HACK TODO FIXME... need a better way than this..
+      - install -m 644 wayland-client-extra++.pc /app/share/pkgconfig
+      - install -m 644 wayland-egl++.pc /app/share/pkgconfig
+      - install -m 644 wayland-server-extra++.pc /app/share/pkgconfig
+      - install -m 644 wayland-client-unstable++.pc  /app/share/pkgconfig
+      - install -m 644 wayland-scanner++.pc /app/share/pkgconfig
+      - install -m 644 wayland-server-unstable++.pc /app/share/pkgconfig
+      - install -m 644 wayland-client++.pc /app/share/pkgconfig
+      - install -m 644 wayland-cursor++.pc /app/share/pkgconfig
+      - install -m 644 wayland-server++.pc /app/share/pkgconfig
     modules:
-      - name: pugixml
-        buildsystem: cmake-ninja
-        config-opts:
-          - -DBUILD_SHARED_LIBS=ON
-        sources:
-          - type: archive
-            url: https://github.com/zeux/pugixml/releases/download/v1.15/pugixml-1.15.tar.gz
-            sha256: 655ade57fa703fb421c2eb9a0113b5064bddb145d415dd1f88c79353d90d511a
       - name: pcre
         config-opts:
           - --enable-unicode-properties
@@ -646,8 +661,13 @@ modules:
           - type: archive
             url: http://prdownloads.sourceforge.net/pcre/pcre-8.45.tar.bz2
             sha512: 91bff52eed4a2dfc3f3bfdc9c672b88e7e2ffcf3c4b121540af8a4ae8c1ce05178430aa6b8000658b9bb7b4252239357250890e20ceb84b79cdfcde05154061a
+              #- name: wayland-clientpp
+              #- name: wayland-scannerpp 
+
   - name: kodi
     buildsystem: cmake-ninja
+    build-options:
+      append-ld-library-path: /app/lib64
     config-opts:
       - -DAPP_PACKAGE=tv.kodi.Kodi
       - -DADDONS_CONFIGURE_AT_STARTUP=OFF
