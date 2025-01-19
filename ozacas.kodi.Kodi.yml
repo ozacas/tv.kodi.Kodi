@@ -1,4 +1,4 @@
-app-id: tv.kodi.Kodi
+app-id: ozacas.kodi.Kodi
 runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
@@ -669,7 +669,7 @@ modules:
     build-options:
       append-ld-library-path: /app/lib64
     config-opts:
-      - -DAPP_PACKAGE=tv.kodi.Kodi
+      - -DAPP_PACKAGE=ozacas.kodi.Kodi
       - -DADDONS_CONFIGURE_AT_STARTUP=OFF
       - -DVERBOSE=1
       - -DENABLE_TESTING=OFF
@@ -723,6 +723,15 @@ modules:
       - type: file
         path: tools/patch-addon-manifest.sh
         dest: build/download/
+      - type: file
+        path: patches/DVDDemuxFFmpeg.cpp  # TODO HACK FIXME... monkey patch to avoid compile error with recent AVInputFormat breakage
+        dest: xbmc/cores/VideoPlayer/DVDDemuxers/
+      - type: file
+        path: patches/EncoderFFmpeg.cpp   # ditto
+        dest: xbmc/cdrip/
+      - type: file
+        path: patches/EncoderFFmpeg.h     # ditto
+        dest: xbmc/cdrip/
       - type: shell
         commands:
           - build/download/patch-addon-manifest.sh build/download/addon-list.txt
@@ -788,7 +797,8 @@ modules:
   - addons/imagedecoder.mpo/imagedecoder.mpo.json
   - addons/imagedecoder.raw/imagedecoder.raw.json
   - addons/inputstream.adaptive/inputstream.adaptive.json
-  - addons/inputstream.ffmpegdirect/inputstream.ffmpegdirect.json
+  # doesnt compile with ffmpeg-rockchip due to avformat.h issue
+  # - addons/inputstream.ffmpegdirect/inputstream.ffmpegdirect.json
   - addons/inputstream.rtmp/inputstream.rtmp.json
   - addons/peripheral.joystick/peripheral.joystick.json
   - addons/peripheral.xarcade/peripheral.xarcade.json
