@@ -397,7 +397,7 @@ modules:
       - /share/doc
     sources:
       - type: git
-        url: https://github.com/nyanmisaka/ffmpeg-rockchip.git
+        url: https://github.com/nyanmisaka/ffmpeg-rockchip.git # this commit no longer has AVInputtFormat in avformat.h so may break kodi
         commit: "7.1"
   - name: lirc
     no-autogen: true
@@ -699,7 +699,7 @@ modules:
       - -DENABLE_INTERNAL_NFS=OFF
       - -DENABLE_INTERNAL_FFMPEG=OFF
       - -DENABLE_LIRCCLIENT=ON
-      - -DAPP_RENDER_SYSTEM=gl
+      - -DAPP_RENDER_SYSTEM=gles
       - -DJava_JAVA_EXECUTABLE=/usr/lib/sdk/openjdk17/bin/java
       - -DCROSSGUID_URL=build/download/crossguid.tar.gz
       - -DLIBDVDCSS_URL=build/download/libdvdcss.tar.gz
@@ -712,7 +712,6 @@ modules:
       - type: git
         url: https://github.com/xbmc/xbmc.git
         tag: 21.2-Omega
-        commit: d1a1d48c3cb3722d39264ffdd8132f755ffecd27
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)-\w+$
