@@ -1,0 +1,12 @@
+prefix=/app
+exec_prefix=${prefix}
+libdir=${prefix}/lib64
+includedir=${prefix}/include
+
+Name: librga
+Description: librga
+Requires.private:
+Version: 2.2.0
+Libs: -L${libdir} -lrga
+Libs.private:
+Cflags: -I${includedir}

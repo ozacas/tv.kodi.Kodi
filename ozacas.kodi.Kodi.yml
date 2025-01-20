@@ -392,8 +392,11 @@ modules:
       - cp -a * ${FLATPAK_DEST}
     sources:
       - type: archive
-        url: https://github.com/ozacas/tv.kodi.Kodi/patches/librga2.tar.gz
-        shad256: 6c336aae92e91f2fe738e05488396c006d5a0523236bb9cbf21144f24a316e92
+        url: https://github.com/ozacas/tv.kodi.Kodi/raw/refs/heads/master/patches/librga2.tar.gz
+        sha256: 6c336aae92e91f2fe738e05488396c006d5a0523236bb9cbf21144f24a316e92
+      - type: file
+        path: patches/librga.pc
+        dest: share/pkgconfig
   - name: ffmpeg-rockchip
     config-opts:
       - --enable-version3  # required flags for ffmpeg-rockchip on compilation web page
