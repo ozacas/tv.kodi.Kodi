@@ -36,7 +36,7 @@ cleanup:
   - '*.pyo'
   - '*.cmake'
   - /.ref
-  - /etc
+    #  - /etc
   - /include
   - /lib/cmake
   - /lib64/cmake
@@ -389,11 +389,14 @@ modules:
   - name: librga2
     buildsystem: simple
     build-commands:
-      - cp -a * ${FLATPAK_DEST}
+      - cp -a bin include "${FLATPAK_DEST}"
+      - cp -a lib/* "${FLATPAK_DEST}/lib64" # where the pkgconfig says to find it...
+      - ln -sf "${FLATPAK_DEST}/include/" "${FLATPAK_DEST}/include/rga"
+      - install -m 644 share/pkgconfig/librga.pc "${FLATPAK_DEST}/share/pkgconfig"
     sources:
       - type: archive
         url: https://github.com/ozacas/tv.kodi.Kodi/raw/refs/heads/master/patches/librga2.tar.gz
-        sha256: 6c336aae92e91f2fe738e05488396c006d5a0523236bb9cbf21144f24a316e92
+        sha256: 05d42d2b4c113b66680d9a5a2822680265faae148182d75ffdb12db7dfa83aab
       - type: file
         path: patches/librga.pc
         dest: share/pkgconfig
@@ -414,9 +417,10 @@ modules:
       - --enable-gnutls
       - --enable-vaapi
       - --enable-vdpau
+      - --enable-postproc # needed for kodi.bin to load...
     cleanup:
-      - /include
-      - /lib
+      #- /include # ENSURE libpostproc is available for kodi.bin to use
+      #- /lib
       - /bin
       - /share/doc
     sources:
@@ -667,6 +671,9 @@ modules:
         sha512: 64b59d073a0593ecf442362eb63ec0a9dfeaa1ad1d56b5955cb0c159fd01dc45e012b926811c6ca0dc12d4bb2e640eabc2e778ab7d28de2098eb694d26f01039
       - type: patch
         path: patches/waylandpp-gcc13.patch
+      - type: file
+        path: patches/ld.so.conf
+        dest: build/etc/
     build-commands:  # HACK TODO FIXME... need a better way than this..
       - install -m 644 wayland-client-extra++.pc /app/share/pkgconfig
       - install -m 644 wayland-egl++.pc /app/share/pkgconfig
@@ -677,6 +684,8 @@ modules:
       - install -m 644 wayland-client++.pc /app/share/pkgconfig
       - install -m 644 wayland-cursor++.pc /app/share/pkgconfig
       - install -m 644 wayland-server++.pc /app/share/pkgconfig
+      - mkdir -p /app/etc
+      - install -m 644 build/etc/ld.so.conf /app/etc/ld.so.conf
     modules:
       - name: pcre
         config-opts:
