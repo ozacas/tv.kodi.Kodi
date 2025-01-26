@@ -6,6 +6,14 @@ Android, Linux, BSD, macOS, iOS, tvOS and Windows operating systems, Kodi runs
 on most common processor architectures. This repository packages it through
 Flatpak.
 
+## WARNING WARNING WARNING
+
+This build is experimental - use at own risk. Works for me on NanoPC T6 with 8GB RAM
+It does not have high quality flatpak development, just a gross hack to get ffmpeg 7.x working
+with kodi Omega and rockchip GPU support. Seems to be OK.... just a starting point for further work 
+
+This build is not present on flathub, as it is not official, and not supported in any way.
+
 ## Building
 
 You'll need almost all of an 8GB machine, so dont use memory up with the desktop before you do the build. A 16GB or more SBC is recommended.
@@ -20,16 +28,20 @@ Then you can run it via the command line:
 flatpak run ozacas.kodi.Kodi
 ```
 
-or just search for the installed app on your system
+or just search for the installed app on your system. Dont forget to migrate your library files from `~/.var/app/tv.kodi.Kodi` to
+`~/.var/app/ozacas.kodi.Kodi`
 
 ## Exclusions
 
-A lot of the pvr addons dont build as they depend on inputstream.ffmpegdirect, which doesnt build right now.
+I purged a few plugins before I realised that there is an unofficial branch for ffmpeg 7.x support, which
+is kinda broken... needs fixing one day!
+
 If anyone can take a look, that would be great! In addition:
 
 - `audiodecoder.dumb`
 - `game.libretro.2048`
-dont build
+
+do not build
 
 ## Contributing
 
