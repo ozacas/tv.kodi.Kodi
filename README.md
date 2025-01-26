@@ -19,6 +19,9 @@ This build is not present on flathub, as it is not official, and not supported i
 You'll need almost all of an 8GB machine, so dont use memory up with the desktop before you do the build. A 16GB or more SBC is recommended.
 
 ```
+flathub install org.freedesktop.Platform//24.08  # if not already installed
+flathub install org.freedesktop.Sdk//24.08       # ditto
+flathub install org.freedesktop.Sdk.Extension.openjdk17//24.08 # ditto
 flatpak-builder build-dir --user --ccache --force-clean --install ozacas.kodi.Kodi.yml
 ```
 
