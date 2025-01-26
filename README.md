@@ -8,24 +8,28 @@ Flatpak.
 
 ## Building
 
-Then build via
+You'll need almost all of an 8GB machine, so dont use memory up with the desktop before you do the build. A 16GB or more SBC is recommended.
 
 ```
-flatpak-builder build-dir --user --ccache --force-clean --install tv.kodi.Kodi.yml
+flatpak-builder build-dir --user --ccache --force-clean --install ozacas.kodi.Kodi.yml
 ```
 
 Then you can run it via the command line:
 
 ```
-flatpak run tv.kodi.Kodi
+flatpak run ozacas.kodi.Kodi
 ```
 
 or just search for the installed app on your system
 
-The following binary addons do not compile, and are excluded:
+## Exclusions
+
+A lot of the pvr addons dont build as they depend on inputstream.ffmpegdirect, which doesnt build right now.
+If anyone can take a look, that would be great! In addition:
 
 - `audiodecoder.dumb`
 - `game.libretro.2048`
+dont build
 
 ## Contributing
 

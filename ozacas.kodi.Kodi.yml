@@ -830,13 +830,11 @@ modules:
   - addons/imagedecoder.mpo/imagedecoder.mpo.json
   - addons/imagedecoder.raw/imagedecoder.raw.json
   - addons/inputstream.adaptive/inputstream.adaptive.json
-  # doesnt compile with ffmpeg-rockchip due to avformat.h issue
-  # - addons/inputstream.ffmpegdirect/inputstream.ffmpegdirect.json
+  # build to use unofficial ffmpeg 7.x branch from ffmpeg-rockchip
+  - addons/inputstream.ffmpegdirect/inputstream.ffmpegdirect.json
   - addons/inputstream.rtmp/inputstream.rtmp.json
   - addons/peripheral.joystick/peripheral.joystick.json
   - addons/peripheral.xarcade/peripheral.xarcade.json
-  - addons/pvr.argustv/pvr.argustv.json
-  - addons/pvr.demo/pvr.demo.json
   - addons/pvr.dvblink/pvr.dvblink.json
   - addons/pvr.dvbviewer/pvr.dvbviewer.json
   - addons/pvr.filmon/pvr.filmon.json
@@ -848,18 +846,9 @@ modules:
   - addons/pvr.mythtv/pvr.mythtv.json
   - addons/pvr.nextpvr/pvr.nextpvr.json
   - addons/pvr.njoy/pvr.njoy.json
-  - addons/pvr.octonet/pvr.octonet.json
   - addons/pvr.pctv/pvr.pctv.json
-  - addons/pvr.plutotv/pvr.plutotv.json
-  - addons/pvr.sledovanitv.cz/pvr.sledovanitv.cz.json
   - addons/pvr.stalker/pvr.stalker.json
   - addons/pvr.teleboy/pvr.teleboy.json
-  - addons/pvr.vbox/pvr.vbox.json
-  - addons/pvr.vdr.vnsi/pvr.vdr.vnsi.json
-  - addons/pvr.vuplus/pvr.vuplus.json
-  - addons/pvr.waipu/pvr.waipu.json
-  - addons/pvr.wmc/pvr.wmc.json
-  - addons/pvr.zattoo/pvr.zattoo.json
   - addons/screensaver.asteroids/screensaver.asteroids.json
   - addons/screensaver.asterwave/screensaver.asterwave.json
   - addons/screensaver.biogenesis/screensaver.biogenesis.json

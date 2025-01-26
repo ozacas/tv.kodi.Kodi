@@ -32,7 +32,6 @@ imagedecoder.heif
 imagedecoder.mpo
 imagedecoder.raw
 inputstream.adaptive
-inputstream.ffmpegdirect
 inputstream.rtmp
 peripheral.joystick
 peripheral.xarcade

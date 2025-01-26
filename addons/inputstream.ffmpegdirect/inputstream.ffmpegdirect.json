@@ -4,8 +4,8 @@
     "sources": [
         {
             "type": "git",
-            "url": "https://github.com/xbmc/inputstream.ffmpegdirect",
-            "commit": "f81ec9fd1171a6af927f66eef910c18a5c997514"
+	    "url": "https://github.com/basilgello/inputstream.ffmpegdirect.git",
+            "commit": "5552d0bde9ec84c42ef7a72972179f99755a2618"
         }
     ],
     "build-options": {
@@ -14,6 +14,7 @@
         "cxxflags": "-g0"
     },
     "config-opts": [
-        "-DCMAKE_BUILD_TYPE=Release"
+        "-DCMAKE_BUILD_TYPE=Release",
+	"-DFFMPEG_PATH=/app"
     ]
 }
