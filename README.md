@@ -22,6 +22,7 @@ You'll need almost all of an 8GB machine, so dont use memory up with the desktop
 flathub install org.freedesktop.Platform//24.08  # if not already installed
 flathub install org.freedesktop.Sdk//24.08       # ditto
 flathub install org.freedesktop.Sdk.Extension.openjdk17//24.08 # ditto
+flatpak build-init build-dir ozacas.kodi.Kodi org.freedesktop.Sdk//24.08 org.freedesktop.Platform//24.08  # if not already done
 flatpak-builder build-dir --user --ccache --force-clean --install ozacas.kodi.Kodi.yml
 ```
 
