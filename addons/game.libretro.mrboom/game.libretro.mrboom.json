@@ -14,7 +14,7 @@
         {
             "type": "git",
             "url": "https://github.com/kodi-game/game.libretro.mrboom",
-            "commit": "6f649f5e3651776d73253f2959adcd640c0933de"
+            "commit": "94572733a2407b02b06d9e292248847d5e806621"
         }
     ],
     "modules": [
@@ -27,7 +27,7 @@
                 "cxxflags": "-g0"
             },
             "build-commands": [
-                "make -j PREFIX=/app platform=unix",
+                "make -j $FLATPAK_BUILDER_N_JOBS PREFIX=/app platform=unix",
                 "install -D -m 755 mrboom_libretro.so /app/lib/libretro/mrboom_libretro.so"
             ],
             "cleanup": [

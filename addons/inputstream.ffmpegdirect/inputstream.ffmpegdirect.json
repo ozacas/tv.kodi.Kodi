@@ -4,8 +4,8 @@
     "sources": [
         {
             "type": "git",
-	    "url": "https://github.com/basilgello/inputstream.ffmpegdirect.git",
-            "commit": "5552d0bde9ec84c42ef7a72972179f99755a2618"
+            "url": "https://github.com/xbmc/inputstream.ffmpegdirect",
+            "commit": "55a1859a50e9993089ac82292798e422f5495d77"
         }
     ],
     "build-options": {
